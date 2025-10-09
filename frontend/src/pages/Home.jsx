@@ -3,6 +3,7 @@ import Hero from '../components/Hero'
 import Search from '../components/Search'
 import Category from '../components/Category'
 import NewArrival from '../components/NewArrival'
+import NewsLetter from '../components/NewsLetter'
 
 function Home() {
   return (
@@ -11,6 +12,7 @@ function Home() {
         <Search/>
         <Category/>
         <NewArrival/>
+        <NewsLetter/>
     </div>
   )
 }

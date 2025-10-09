@@ -10,6 +10,7 @@ import MyOrders from './pages/MyOrders'
 import AddAdress from './pages/AddAdress'
 import Navbar from './components/Navbar'
 import { Toaster } from 'react-hot-toast'
+import Footer from './components/Footer'
 function App() {
   const isAdminPath = useLocation().pathname.includes("admin");
   return (
@@ -27,6 +28,9 @@ function App() {
               <Route path='/my-orders' element ={<MyOrders/>}/>
                <Route path='/add-address' element ={<AddAdress/>}/>
          </Routes>
+         {
+          isAdminPath ?null :<Footer/>
+         }
     
     </div>
   )

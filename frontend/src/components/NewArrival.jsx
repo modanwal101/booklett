@@ -8,10 +8,10 @@ const NewArrival = () => {
   return (
     <div className='my-16'>
       <h1 className='text-2xl md:text-5xl font-bold text-gray-800'>New Arrival</h1>
-      <div className='flex gap-4 flex-wrap'>
+      <div className='my-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5'>
         {booksData && booksData.length > 0 ? (
-          booksData.slice(0, 5).map((book) => (
-            <BookCard key={index} book={book} />
+          booksData.slice(0, 8).map((book) => (
+            <BookCard book={book} />
           ))
         ) : (
           <p>No new arrivals yet.</p>
