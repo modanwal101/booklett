@@ -1,7 +1,10 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { assets, books } from '../assets/assets'
+import { AppContext } from '../context/AppContext'
 const BookCard = ({book}) => {
+  const {addCart} =useContext(AppContext);
+
   return (
     <div className='p-4'>
         <Link to={`/book/${book._id}`}>
@@ -26,7 +29,9 @@ const BookCard = ({book}) => {
           </div>
 
         </div>
-        <button className='bg-blue-600 text-white rounded-full px-10 py-2 cursor-pointer mt-4 hover:bg-blue-800'>Add To Card</button>
+        <button 
+        onClick={()=>addCart(book)}
+        className='bg-blue-600 text-white rounded-full px-10 py-2 cursor-pointer mt-4 hover:bg-blue-800'>Add To Card</button>
        
       
     </div>

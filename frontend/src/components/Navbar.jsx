@@ -6,7 +6,7 @@ import { AppContext } from "../context/AppContext";
 import toast from "react-hot-toast"
 
 const Navbar = () => {
-    const {navigate, user, setUser} = useContext(AppContext)
+    const {navigate, user, setUser,cartCount} = useContext(AppContext)
   const [open, setOpen] = useState(false);
 
   const logout = async () =>{
@@ -31,7 +31,7 @@ const Navbar = () => {
         <div className="relative cursor-pointer">
           <BsCart className="w-6 h-6" />
           <button className="absolute -top-2 -right-3 text-xs text-white bg-indigo-500 w-[18px] h-[18px] rounded-full">
-            3
+            {cartCount?cartCount :0}
           </button>
         </div>
         {user ?(<div className="flex items-center gap-5">
