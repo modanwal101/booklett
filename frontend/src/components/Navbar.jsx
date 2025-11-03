@@ -25,10 +25,12 @@ const Navbar = () => {
       <div className="hidden sm:flex items-center gap-8">
        <Link to={"/"}>Home</Link>
        <Link to={"/books"}>Books</Link>
+       {/* <Link to={"/cart"}></Link> */}
 
         
 
-        <div className="relative cursor-pointer">
+        <div className="relative cursor-pointer"
+        onClick={()=>navigate("/cart")}>
           <BsCart className="w-6 h-6" />
           <button className="absolute -top-2 -right-3 text-xs text-white bg-indigo-500 w-[18px] h-[18px] rounded-full">
             {cartCount?cartCount :0}

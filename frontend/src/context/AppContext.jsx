@@ -3,20 +3,41 @@ import React, { createContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { books, booksData } from "../assets/assets";
 import toast, { Toaster } from "react-hot-toast";
-
+import axios from "axios";
+axios.defaults.baseURL = import.meta.env.VITE_BACKEND_URL;
+axios. defaults.withCredentials = true;
 export const AppContext = createContext(null);
+
+
 
 const AppContextProvider = ({ children }) => {
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
+  // Admin State
+  const[isAdmin, setIsAdmin] = useState(false)
   const [booksData, setBooksData] = useState([]);
   
   // filter using book
   const [searchQuery, setSearchQuery] = useState("")
   const [selectedCategory, setSelectedCategory] = useState("")
 
+
+ 
   // Add card button
   const [cart, setCart] = useState([])
+   const fetchAdmin =async()=>{
+    try{
+      const { data } = await axios.get("/admin/is-auth", { withCredentials: true });
+
+      if(data.success){
+        setIsAdmin(true);
+      }else{
+        toast.error(data.message)
+      }
+    }catch(error){
+       toast.error(error.message);
+    }
+  }
   const fetchBooks = async ()=>{
     setBooksData(books)
   }
@@ -54,12 +75,17 @@ const AppContextProvider = ({ children }) => {
 
   useEffect(()=>{
     fetchBooks();
+    fetchAdmin();
   },[])
+  //  object
 
   const value = {
     navigate,
     user,
+    cart,
     setUser,
+    isAdmin, 
+    setIsAdmin,
      booksData,
     searchQuery,
     setSearchQuery,
@@ -70,7 +96,7 @@ const AppContextProvider = ({ children }) => {
     updateCart,
     cartCount,
     totalCartPrice,
-    
+    axios,
   };
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
